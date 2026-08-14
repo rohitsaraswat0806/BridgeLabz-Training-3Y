@@ -30,6 +30,7 @@ A Full-Stack Developer works on both frontend and backend and can build a comple
 ## Q2. Client-Server Model
 
 ```text
+
 Client (Browser)
       |
  HTTP Request
