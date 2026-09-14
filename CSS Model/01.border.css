@@ -1,0 +1,12 @@
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Arial, sans-serif; background: #f4f4f4; color: #222; }
+header, footer { text-align: center; padding: 20px; background: #222; color: white; }
+.boxes { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; padding: 40px; }
+.box { width: 180px; text-align: center; background: white; border-width: 5px; padding: 25px; transition: border-color 0.3s ease; }
+.box:hover { border-color: #e67e22; }
+.solid { border-style: solid; }
+.dashed { border-style: dashed; }
+.double { border-style: double; }
+.groove { border-style: groove; }
+.rounded { border: 5px solid #3498db; border-radius: 25px; }
+.padding { border: 5px solid #27ae60; padding: 50px 20px; }

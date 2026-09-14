@@ -1,0 +1,12 @@
+* { box-sizing: border-box; }
+body { margin: 0; background: #f7f3ed; color: #2c2c2c; font-family: Georgia, serif; }
+header { text-align: center; padding: 25px; background: #333; color: white; }
+article { max-width: 750px; margin: 45px auto; padding: 35px; background: white; }
+h2 { font-family: Arial, sans-serif; font-size: 2em; font-weight: 700; text-align: center; letter-spacing: 2px; }
+p { font-size: 1.1em; line-height: 1.8; text-align: justify; letter-spacing: 0.4px; }
+.intro { font-family: Arial, sans-serif; font-weight: 600; }
+mark { background: #ffd166; color: #222; }
+strong { color: #b03a2e; }
+em { color: #2e86ab; }
+p::first-letter { font-size: 1.5em; font-weight: bold; }
+p::first-line { letter-spacing: 0.7px; }

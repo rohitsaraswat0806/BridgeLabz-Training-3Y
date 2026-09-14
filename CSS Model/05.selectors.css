@@ -1,0 +1,15 @@
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Arial, sans-serif; background: #f4f4f4; }
+header { background: #222; color: white; text-align: center; padding: 20px; }
+.content { max-width: 700px; margin: 30px auto; padding: 30px; background: white; }
+input[type="text"] { border: 2px solid #3498db; }
+a[href^="https"] { font-weight: bold; }
+li:hover { background: #ddd; }
+input:focus { outline: 3px solid #f39c12; }
+li:nth-child(2) { color: #c0392b; }
+h2::before { content: "★ "; }
+.note::after { content: " (end)"; }
+.content > h2 { letter-spacing: 2px; }
+h2 + ul { margin-top: 5px; }
+h2 ~ .note { font-style: italic; }
+.content p { line-height: 1.6; }

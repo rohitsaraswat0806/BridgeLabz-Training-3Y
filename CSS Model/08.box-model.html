@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Box Model Exploration</title>
+    <link rel="stylesheet" href="08.box-model.css">
+</head>
+<body>
+<header><h1>Box Model Exploration</h1></header>
+<main class="model">
+    <div class="margin-layer">
+        <div class="border-layer">
+            <div class="padding-layer">
+                <div class="content-layer">CONTENT</div>
+            </div>
+        </div>
+    </div>
+    <p>Content is inside padding, followed by border and then margin.</p>
+    <div class="comparison">
+        <div class="default">Default box-sizing</div>
+        <div class="border-box">box-sizing: border-box</div>
+    </div>
+</main>
+</body>
+</html>

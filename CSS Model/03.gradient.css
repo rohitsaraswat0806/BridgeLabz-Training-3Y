@@ -1,0 +1,8 @@
+* { box-sizing: border-box; }
+html, body { margin: 0; font-family: Arial, sans-serif; }
+header, footer { position: fixed; left: 0; width: 100%; text-align: center; padding: 15px; background: #222; color: white; z-index: 2; }
+header { top: 0; } footer { bottom: 0; }
+main { padding-top: 55px; padding-bottom: 55px; }
+section { min-height: 50vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: white; }
+.linear { background: linear-gradient(120deg, #6a11cb, #2575fc); background-attachment: fixed; }
+.radial { background: radial-gradient(circle, #ff9966, #ff5e62); }

@@ -1,0 +1,14 @@
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Arial, sans-serif; }
+.navbar { display: flex; align-items: center; justify-content: space-between; padding: 15px 30px; background: #222; color: white; }
+nav { display: flex; }
+nav a { color: white; text-decoration: none; padding: 12px 18px; border: 1px solid transparent; transition: all 0.3s ease; }
+nav a:hover { background: #444; border-color: white; }
+nav a.active { background: #e67e22; }
+main { min-height: 70vh; text-align: center; padding: 50px; }
+footer { text-align: center; padding: 20px; background: #222; color: white; }
+@media (max-width: 700px) {
+    .navbar { flex-direction: column; gap: 15px; }
+    nav { flex-direction: column; width: 100%; text-align: center; }
+    nav a { width: 100%; }
+}

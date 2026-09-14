@@ -1,0 +1,8 @@
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Arial, sans-serif; background: #eee; }
+header { text-align: center; padding: 18px; background: #333; color: white; }
+.layout { min-height: 85vh; display: flex; justify-content: center; align-items: center; gap: 25px; flex-wrap: wrap; padding: 30px; }
+.box { display: flex; justify-content: center; align-items: center; text-align: center; padding: 15px; overflow: auto; }
+.box-one { width: 180px; height: 150px; background: #f6c667; }
+.box-two { width: 40%; height: 8em; min-height: 100px; max-width: 450px; background: #7ec8e3; }
+.box-three { width: 35vw; height: 25vh; min-height: 120px; max-width: 500px; background: #9be28f; }
