@@ -1,0 +1,22 @@
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Arial, sans-serif; background: #f5f7fa; color: #172033; }
+header, footer { text-align: center; padding: 24px; }
+.card { max-width: 800px; margin: auto; background: white; padding: 30px; border-radius: 14px; box-shadow: 0 8px 24px rgba(0,0,0,.08); }
+/* Element selector: styles every paragraph */
+p { line-height: 1.6; }
+/* Class selector: styles elements with class="special" */
+.special { background: #e8f1ff; padding: 10px; }
+/* ID selector: styles the unique element */
+#unique { border-left: 5px solid #263c58; padding-left: 12px; }
+/* Attribute selector: selects links with target="_blank" */
+a[target="_blank"] { font-weight: bold; }
+/* Descendant combinator: selects every p inside .parent */
+.parent p { color: #4b5d70; }
+/* Child combinator: selects direct span children */
+.parent > span { font-weight: bold; }
+/* Adjacent sibling: selects p immediately after another p */
+.siblings p + p { background: #fff2cc; padding: 6px; }
+/* General sibling: selects all p after the first p */
+.siblings p ~ p { border-radius: 5px; }
+/* Descendant list styling */
+.card ul li { margin: 8px 0; }

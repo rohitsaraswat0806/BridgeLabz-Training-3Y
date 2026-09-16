@@ -1,0 +1,10 @@
+* { box-sizing: border-box; }
+body { margin: 0; min-height: 100vh; font-family: Arial, sans-serif; background: #f4f6f9; color: #172033; display: flex; flex-direction: column; }
+header, footer { text-align: center; padding: 24px; }
+.comparison { flex: 1; display: flex; justify-content: center; align-items: center; gap: 30px; padding: 30px; flex-wrap: wrap; }
+.box { width: 260px; padding: 30px; border: 5px solid #172033; border-radius: 12px; min-height: 230px; }
+.box div { padding: 15px; background: rgba(255,255,255,.65); }
+.default { box-sizing: content-box; background: #dceeff; }
+.border-box { box-sizing: border-box; background: #ffe4d6; }
+.box h2 { margin-top: 0; font-size: 20px; }
+@media (max-width: 600px) { .comparison { flex-direction: column; } }
