@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Dashboard Summary</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: #0f172a;
+      color: #f8fafc;
+      min-height: 100vh;
+    }
+
+    /* Simple load animation using @keyframes */
+    @keyframes dashboardFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Layout includes Header, Sidebar, and Main Content using CSS Grid */
+    .dashboard-layout {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      grid-template-rows: 64px 1fr;
+      grid-template-areas:
+        "header  header"
+        "sidebar main";
+      min-height: 100vh;
+      animation: dashboardFadeIn 0.6s ease-out forwards;
+    }
+
+    /* Header */
+    .dashboard-header {
+      grid-area: header;
+      background-color: #1e293b;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2rem;
+      border-bottom: 1px solid #334155;
+    }
+
+    .dashboard-header h2 {
+      font-size: 1.25rem;
+      color: #ffffff;
+    }
+
+    .user-status {
+      font-size: 0.85rem;
+      background-color: #334155;
+      padding: 0.35rem 0.75rem;
+      border-radius: 9999px;
+      color: #38bdf8;
+    }
+
+    /* Sidebar */
+    .dashboard-sidebar {
+      grid-area: sidebar;
+      background-color: #111827;
+      border-right: 1px solid #1f2937;
+      padding: 1.5rem 1rem;
+    }
+
+    .sidebar-menu {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .sidebar-menu a {
+      padding: 0.75rem 1rem;
+      color: #9ca3af;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    .sidebar-menu a:hover,
+    .sidebar-menu a.active {
+      background-color: #1f2937;
+      color: #38bdf8;
+    }
+
+    /* Main Content */
+    .dashboard-main {
+      grid-area: main;
+      padding: 2rem;
+      overflow-y: auto;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      max-width: 1200px;
+    }
+
+    .dash-card {
+      background-color: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      padding: 1.75rem;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .dash-card .card-tag {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #38bdf8;
+      font-weight: 700;
+    }
+
+    .dash-card h3 {
+      font-size: 1.25rem;
+      color: #ffffff;
+    }
+
+    .dash-card p {
+      color: #94a3b8;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    /* On hover: each card scales up slightly with a shadow effect */
+    .dash-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 12px 24px -4px rgba(0, 0, 0, 0.5);
+      border-color: #475569;
+    }
+
+    /* Below 750px: sidebar shifts to the top and content stacks below it */
+    @media (max-width: 750px) {
+      .dashboard-layout {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto 1fr;
+        grid-template-areas:
+          "header"
+          "sidebar"
+          "main";
+      }
+
+      .dashboard-sidebar {
+        border-right: none;
+        border-bottom: 1px solid #1f2937;
+        padding: 0.75rem 1rem;
+      }
+
+      .sidebar-menu {
+        flex-direction: row;
+        overflow-x: auto;
+      }
+
+      .sidebar-menu a {
+        white-space: nowrap;
+        padding: 0.5rem 0.75rem;
+      }
+
+      .dashboard-main {
+        padding: 1.25rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard-layout">
+    <header class="dashboard-header">
+      <h2>CSS Systems Dashboard</h2>
+      <div class="user-status">Admin Session</div>
+    </header>
+
+    <aside class="dashboard-sidebar">
+      <nav class="sidebar-menu">
+        <a href="#" class="active">Overview</a>
+        <a href="Q5_filtercard.html">Filters</a>
+        <a href="Q4_typography.html">Typography</a>
+        <a href="Q3_cardmedia.html">Media Queries</a>
+        <a href="Q6_cheatsheet.html">Cheatsheets</a>
+      </nav>
+    </aside>
+
+    <main class="dashboard-main">
+      <div class="cards-grid">
+        <article class="dash-card">
+          <span class="card-tag">Graphics</span>
+          <h3>Filters</h3>
+          <p>Applied render modifications including blur, grayscale, and hue shift layers.</p>
+        </article>
+
+        <article class="dash-card">
+          <span class="card-tag">Scaling</span>
+          <h3>Typography</h3>
+          <p>Fluid type using CSS clamp(), viewport scale factors, and line-height constraints.</p>
+        </article>
+
+        <article class="dash-card">
+          <span class="card-tag">Adapters</span>
+          <h3>Media Queries</h3>
+          <p>Screen-width triggers rearranging multi-column surfaces into single flow streams.</p>
+        </article>
+
+        <article class="dash-card">
+          <span class="card-tag">Docs</span>
+          <h3>Cheat Sheet Links</h3>
+          <p>Consolidated standard syntax tables, alignment guides, and flex shorthand cheat lists.</p>
+        </article>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

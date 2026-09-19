@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Responsive Image Filter Gallery</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+            padding: 30px;
+            min-height: 100vh;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            color: #94a3b8;
+            font-size: 16px;
+        }
+
+        main {
+            width: 100%;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(
+                auto-fit,
+                minmax(200px, 1fr)
+            );
+
+            gap: 25px;
+
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .gallery-item {
+            background-color: #1e293b;
+            border-radius: 10px;
+            overflow: hidden;
+
+            box-shadow:
+                0 4px 6px rgba(0, 0, 0, 0.3);
+
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 220px;
+
+            object-fit: cover;
+
+            display: block;
+
+            transition:
+                filter 0.4s ease,
+                transform 0.4s ease;
+        }
+
+        /* Image Filters */
+
+        .filter-blur {
+            filter: blur(4px);
+        }
+
+        .filter-grayscale {
+            filter: grayscale(100%);
+        }
+
+        .filter-sepia {
+            filter: sepia(100%);
+        }
+
+        .filter-brightness {
+            filter: brightness(160%);
+        }
+
+        .filter-contrast {
+            filter: contrast(220%);
+        }
+
+        .filter-hue {
+            filter: hue-rotate(90deg);
+        }
+
+        /* Remove filter when mouse is over image */
+
+        .gallery-item:hover img {
+            filter: none;
+            transform: scale(1.03);
+        }
+
+        figcaption {
+            padding: 15px;
+
+            text-align: center;
+
+            font-size: 15px;
+            font-weight: bold;
+
+            color: #cbd5e1;
+        }
+
+        footer {
+            text-align: center;
+
+            margin-top: 50px;
+
+            color: #64748b;
+
+            font-size: 14px;
+        }
+
+        /* Mobile */
+
+        @media (max-width: 600px) {
+
+            body {
+                padding: 20px;
+            }
+
+            header h1 {
+                font-size: 25px;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-item img {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+
+    <header>
+        <h1>Responsive Image Filter Gallery</h1>
+
+        <p>
+            Hover over any image to remove its filter effect.
+        </p>
+    </header>
+
+
+    <!-- Main Gallery -->
+
+    <main>
+
+        <section class="gallery">
+
+            <!-- Blur -->
+
+            <figure class="gallery-item">
+
+                <img
+                    src="https://picsum.photos/id/1015/400/300"
+                    alt="Mountain landscape"
+                    class="filter-blur"
+                >
+
+                <figcaption>
+                    Filter: Blur (4px)
+                </figcaption>
+
+            </figure>
+
+
+            <!-- Grayscale -->
+
+            <figure class="gallery-item">
+
+                <img
+                    src="https://picsum.photos/id/1018/400/300"
+                    alt="Valley trail"
+                    class="filter-grayscale"
+                >
+
+                <figcaption>
+                    Filter: Grayscale (100%)
+                </figcaption>
+
+            </figure>
+
+
+            <!-- Sepia -->
+
+            <figure class="gallery-item">
+
+                <img
+                    src="https://picsum.photos/id/1025/400/300"
+                    alt="Dog"
+                    class="filter-sepia"
+                >
+
+                <figcaption>
+                    Filter: Sepia (100%)
+                </figcaption>
+
+            </figure>
+
+
+            <!-- Brightness -->
+
+            <figure class="gallery-item">
+
+                <img
+                    src="https://picsum.photos/id/1039/400/300"
+                    alt="Forest waterfall"
+                    class="filter-brightness"
+                >
+
+                <figcaption>
+                    Filter: Brightness (160%)
+                </figcaption>
+
+            </figure>
+
+
+            <!-- Contrast -->
+
+            <figure class="gallery-item">
+
+                <img
+                    src="https://picsum.photos/id/1043/400/300"
+                    alt="Historic bridge"
+                    class="filter-contrast"
+                >
+
+                <figcaption>
+                    Filter: Contrast (220%)
+                </figcaption>
+
+            </figure>
+
+
+            <!-- Hue Rotate -->
+
+            <figure class="gallery-item">
+
+                <img
+                    src="https://picsum.photos/id/1050/400/300"
+                    alt="Coastal cliffs"
+                    class="filter-hue"
+                >
+
+                <figcaption>
+                    Filter: Hue-Rotate (90deg)
+                </figcaption>
+
+            </figure>
+
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+
+    <footer>
+
+        <p>
+            &copy; 2026 Responsive Image Filter Gallery
+        </p>
+
+    </footer>
+
+</body>
+</html>

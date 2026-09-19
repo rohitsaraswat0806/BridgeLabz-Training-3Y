@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Filter Comparison Layout</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: #0b132b;
+      color: #f1f5f9;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: 2rem;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      color: #8da9c4;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Side-by-side desktop layout */
+    .comparison-container {
+      display: flex;
+      gap: 2rem;
+      max-width: 1000px;
+      width: 100%;
+    }
+
+    .comparison-card {
+      flex: 1;
+      background-color: #1c2541;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .image-box {
+      width: 100%;
+      height: 320px;
+      overflow: hidden;
+      background-color: #000;
+    }
+
+    .image-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Right image CSS filter */
+    .filtered-view {
+      filter: contrast(180%) brightness(85%);
+      transition: filter 0.5s ease-in-out;
+    }
+
+    /* On hover: Filter fades away smoothly */
+    .comparison-card:hover .filtered-view {
+      filter: none;
+    }
+
+    figcaption {
+      padding: 1.25rem;
+      text-align: center;
+      font-size: 0.95rem;
+      color: #cbd5e1;
+      font-weight: 500;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      color: #475569;
+      font-size: 0.875rem;
+    }
+
+    /* Below 700px: Stack images vertically with captions */
+    @media (max-width: 700px) {
+      .comparison-container {
+        flex-direction: column;
+      }
+
+      .image-box {
+        height: 240px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Before &amp; After Filter Inspection</h1>
+    <p>Hover over the modified image on the right to revert the filter effect.</p>
+  </header>
+
+  <main>
+    <section class="comparison-container">
+      <figure class="comparison-card">
+        <div class="image-box">
+          <img src="https://picsum.photos/id/1016/600/400" alt="Original landscape">
+        </div>
+        <figcaption>Original Image (Unfiltered)</figcaption>
+      </figure>
+
+      <figure class="comparison-card">
+        <div class="image-box">
+          <img src="https://picsum.photos/id/1016/600/400" alt="Filtered landscape" class="filtered-view">
+        </div>
+        <figcaption>Modified (Contrast &amp; Brightness Filter)</figcaption>
+      </figure>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Image Processing Demos</p>
+  </footer>
+</body>
+</html>

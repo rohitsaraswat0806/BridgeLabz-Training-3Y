@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Combined Responsive Web Demo</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: #f1f5f9;
+      color: #0f172a;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Flexbox Header and Navigation */
+    .site-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: #1e293b;
+      color: #ffffff;
+    }
+
+    .site-header .logo {
+      font-weight: 700;
+      font-size: 1.3rem;
+    }
+
+    .site-nav {
+      display: flex;
+      gap: 1.25rem;
+    }
+
+    .site-nav a {
+      color: #94a3b8;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .site-nav a:hover {
+      color: #38bdf8;
+    }
+
+    /* Fade-in animation */
+    @keyframes pageFadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* CSS Grid Layout for Main Area (3 sections) */
+    .page-grid {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+      animation: pageFadeIn 0.8s ease-in-out forwards;
+    }
+
+    .panel {
+      background-color: #ffffff;
+      padding: 1.75rem;
+      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .panel:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+
+    .panel h2 {
+      font-size: 1.25rem;
+      color: #0f172a;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 0.5rem;
+    }
+
+    .demo-gallery {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .demo-image-card img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 6px;
+      transition: filter 0.3s ease;
+    }
+
+    .filter-tone { filter: grayscale(90%); }
+    .filter-vintage { filter: sepia(85%); }
+
+    .demo-image-card:hover img {
+      filter: none;
+    }
+
+    .demo-image-card figcaption {
+      font-size: 0.8rem;
+      color: #64748b;
+      margin-top: 0.25rem;
+    }
+
+    .cheat-item {
+      background-color: #f8fafc;
+      padding: 0.75rem;
+      border-radius: 6px;
+      border-left: 3px solid #38bdf8;
+    }
+
+    .cheat-item strong {
+      display: block;
+      font-size: 0.9rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .cheat-item p {
+      font-size: 0.85rem;
+      color: #475569;
+    }
+
+    /* Footer with Contact Information */
+    .site-footer {
+      text-align: center;
+      padding: 1.5rem;
+      background-color: #1e293b;
+      color: #94a3b8;
+      font-size: 0.85rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    /* Below 700px: Stack sections vertically */
+    @media (max-width: 700px) {
+      .page-grid {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="logo">WebMastery</div>
+    <nav class="site-nav">
+      <a href="#gallery">Gallery</a>
+      <a href="#principles">Principles</a>
+      <a href="#cheatsheet">Cheat Sheet</a>
+    </nav>
+  </header>
+
+  <main class="page-grid">
+    <!-- Section 1: Gallery -->
+    <section id="gallery" class="panel">
+      <h2>Visual Gallery</h2>
+      <div class="demo-gallery">
+        <figure class="demo-image-card">
+          <img src="https://picsum.photos/id/1069/300/200" alt="Jellyfish" class="filter-tone">
+          <figcaption>Ocean Drift</figcaption>
+        </figure>
+        <figure class="demo-image-card">
+          <img src="https://picsum.photos/id/1067/300/200" alt="Urban architecture" class="filter-vintage">
+          <figcaption>City Geometry</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Section 2: Text Explanation -->
+    <section id="principles" class="panel">
+      <h2>Responsive Philosophy</h2>
+      <p>
+        Building responsive websites requires abandoning pixel-perfect rigid mockups in favor of fluid proportions, media queries, and modern CSS layout engines like Flexbox and Grid.
+      </p>
+      <p>
+        With CSS functions like <code>clamp()</code> and <code>minmax()</code>, layout components naturally adapt to constraints without repetitive breakpoint rules.
+      </p>
+    </section>
+
+    <!-- Section 3: Cheat Sheet Preview -->
+    <section id="cheatsheet" class="panel">
+      <h2>Quick Reference</h2>
+      <div class="cheat-item">
+        <strong>Flexbox:</strong>
+        <p>1-dimensional distribution for rows or columns.</p>
+      </div>
+      <div class="cheat-item">
+        <strong>Grid:</strong>
+        <p>2-dimensional template distribution with strict cell coordinates.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Contact Us: engineering@example.com | 1-800-555-RESP</p>
+    <p>&copy; 2026 Combined Responsive Architecture</p>
+  </footer>
+</body>
+</html>
