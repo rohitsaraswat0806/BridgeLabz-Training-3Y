@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Special Offers</title>
+    <style>
+        body {
+            font-family: Arial;
+            padding: 25px;
+            background: #f8fafc
+        }
+
+        .controls button {
+            margin: 4px;
+            padding: 9px
+        }
+
+        .banner {
+            padding: 20px;
+            margin: 12px 0;
+            border-radius: 9px;
+            background: #dbeafe
+        }
+
+        .banner:nth-of-type(2) {
+            background: #dcfce7
+        }
+
+        .banner:nth-of-type(3) {
+            background: #fef3c7
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="04.special-offer-banner.js" defer></script>
+</head>
+
+<body>
+    <main>
+        <h1>Special Offers</h1>
+        <div class="controls"><button id="hide">Hide</button><button id="show">Show</button><button id="slideUp">Slide
+                Up</button><button id="slideDown">Slide Down</button><button id="fadeOut">Fade Out</button><button
+                id="fadeIn">Fade In</button></div>
+        <section id="banners">
+            <article class="banner">
+                <h2>Offer 1: 20% Off</h2>
+                <p>Save on selected accessories today.</p>
+            </article>
+            <article class="banner">
+                <h2>Offer 2: Free Delivery</h2>
+                <p>Free delivery on orders above ₹999.</p>
+            </article>
+            <article class="banner">
+                <h2>Offer 3: Student Deal</h2>
+                <p>Special prices for students.</p>
+            </article>
+        </section>
+    </main>
+    <script>
+        $(function(){
+  const banners=$(".banner");let current=0;
+  $("#hide").on("click",function(){banners.eq(current).hide();});
+  $("#show").on("click",function(){banners.show();});
+  $("#slideUp").on("click",function(){banners.slideUp();});
+  $("#slideDown").on("click",function(){banners.slideDown();});
+  $("#fadeOut").on("click",function(){banners.fadeOut(500);});
+  $("#fadeIn").on("click",function(){banners.fadeIn(500);});
+  // Rotate one visible banner at a time using fadeOut() and fadeIn().
+  banners.hide().eq(0).show();
+  setInterval(function(){
+    banners.eq(current).fadeOut(400);
+    current=(current+1)%banners.length;
+    banners.eq(current).fadeIn(400);
+  },5000);
+});
+    </script>
+</body>
+
+</html>

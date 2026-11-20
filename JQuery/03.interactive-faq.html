@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Interactive FAQ</title>
+    <style>
+        body {
+            font-family: Arial;
+            padding: 25px;
+            background: #f1f5f9
+        }
+
+        .faq {
+            max-width: 700px;
+            margin: auto
+        }
+
+        .item {
+            background: white;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 8px
+        }
+
+        .question {
+            cursor: pointer;
+            color: #1e3a8a
+        }
+
+        .answer {
+            display: none;
+            padding: 10px;
+            background: #f8fafc
+        }
+
+        .answer input {
+            padding: 8px
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="03.interactive-faq.js" defer></script>
+</head>
+
+<body>
+    <main class="faq">
+        <h1>Frequently Asked Questions</h1>
+        <section class="item">
+            <h2 class="question">1. What is jQuery?</h2>
+            <div class="answer">
+                <p>jQuery is a JavaScript library that simplifies DOM manipulation and events.</p><input
+                    placeholder="Write a question">
+            </div>
+        </section>
+        <section class="item">
+            <h2 class="question">2. Is jQuery free?</h2>
+            <div class="answer">
+                <p>Yes, jQuery is free and open-source.</p><input placeholder="Write a question">
+            </div>
+        </section>
+        <section class="item">
+            <h2 class="question">3. Can I use jQuery with HTML?</h2>
+            <div class="answer">
+                <p>Yes, include the jQuery library in your HTML page.</p><input placeholder="Write a question">
+            </div>
+        </section>
+        <section class="item">
+            <h2 class="question">4. What does click() do?</h2>
+            <div class="answer">
+                <p>It attaches a handler that runs when an element is clicked.</p><input placeholder="Write a question">
+            </div>
+        </section>
+        <section class="item">
+            <h2 class="question">5. What is an event?</h2>
+            <div class="answer">
+                <p>An event is an action such as click, hover, focus, or blur.</p><input placeholder="Write a question">
+            </div>
+        </section>
+    </main>
+    <script>
+        $(function(){
+  // Click a question to show or hide only its answer.
+  $(".question").on("click",function(){$(this).next(".answer").slideToggle();});
+  $(".question").hover(function(){$(this).css("color","#dc2626");},
+                       function(){$(this).css("color","#1e3a8a");});
+  // Double-click any question to close every answer.
+  $(".question").on("dblclick",function(){$(".answer").slideUp();});
+  $(".answer input").on("focus",function(){
+    $(this).closest(".item").find(".question").css("background","#fef3c7");
+  }).on("blur",function(){
+    $(this).closest(".item").find(".question").css("background","");
+  });
+});
+    </script>
+</body>
+
+</html>

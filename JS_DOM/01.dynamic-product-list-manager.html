@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dynamic Product List Manager</title>
+<style>
+body{font-family:Arial,sans-serif;background:#f4f6f8;margin:0;padding:30px;color:#222}
+.container{max-width:600px;margin:auto;background:white;padding:24px;border-radius:12px;box-shadow:0 3px 12px #0001}
+input{padding:10px;width:65%;border:1px solid #bbb;border-radius:6px}button{padding:10px 13px;border:0;border-radius:6px;cursor:pointer;margin:3px}
+.add{background:#2563eb;color:white}.edit{background:#f59e0b}.delete{background:#dc2626;color:white}
+li{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px;border-bottom:1px solid #eee}
+.product-name{flex:1}.editing{padding:6px;flex:1}
+</style></head>
+<body><main class="container"><h1>Product List Manager</h1>
+<input id="productInput" placeholder="Enter product name"><button class="add" id="addButton">Add Product</button>
+<ul id="productList"></ul></main>
+<script>
+const productInput=document.getElementById('productInput');
+const productList=document.getElementById('productList');
+
+// Add a new product to the list.
+document.getElementById('addButton').addEventListener('click', addProduct);
+productInput.addEventListener('keydown', event=>{if(event.key==='Enter') addProduct();});
+function addProduct(){
+  const name=productInput.value.trim();
+  if(!name){alert('Please enter a product name.');return;}
+  const item=document.createElement('li');
+  const label=document.createElement('span'); label.className='product-name'; label.textContent=name;
+  const editButton=document.createElement('button'); editButton.className='edit'; editButton.textContent='Edit';
+  const deleteButton=document.createElement('button'); deleteButton.className='delete'; deleteButton.textContent='Delete';
+  item.append(label,editButton,deleteButton); productList.appendChild(item); productInput.value='';
+}
+// Event delegation: one listener handles all Edit and Delete buttons.
+productList.addEventListener('click',event=>{
+  const item=event.target.closest('li'); if(!item)return;
+  if(event.target.classList.contains('delete')){item.remove();return;}
+  if(event.target.classList.contains('edit')) startEditing(item);
+});
+let editingItem=null;
+function saveEdit(){
+  if(!editingItem)return;
+  const field=editingItem.querySelector('input');
+  const label=editingItem.querySelector('.product-name');
+  if(field){label.textContent=field.value.trim()||label.dataset.original;}
+  editingItem.classList.remove('is-editing'); editingItem=null;
+}
+function startEditing(item){
+  if(editingItem===item)return;
+  saveEdit(); editingItem=item;
+  const label=item.querySelector('.product-name'); label.dataset.original=label.textContent;
+  const field=document.createElement('input'); field.className='editing'; field.value=label.textContent;
+  label.replaceWith(field); field.focus(); field.select();
+  field.addEventListener('keydown',event=>{if(event.key==='Enter')saveEdit();if(event.key==='Escape'){field.value=field.dataset.original||label.dataset.original;saveEdit();}});
+  field.addEventListener('blur',saveEdit);
+}
+// Clicking elsewhere saves the current inline edit.
+document.addEventListener('click',event=>{
+  if(editingItem && !editingItem.contains(event.target))saveEdit();
+});
+</script></body></html>

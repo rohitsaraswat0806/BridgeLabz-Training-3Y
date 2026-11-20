@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Welcome Page Greeting</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f1f5f9;
+            padding: 30px
+        }
+
+        .card {
+            max-width: 650px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center
+        }
+
+        button {
+            padding: 10px 15px;
+            margin: 6px;
+            border: 0;
+            border-radius: 6px;
+            background: #2563eb;
+            color: white;
+            cursor: pointer
+        }
+
+        #welcome {
+            padding: 15px;
+            background: #dbeafe;
+            border-radius: 8px
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="01.welcome-page-greeting.js" defer></script>
+</head>
+
+<body>
+    <main class="card">
+        <h1 id="greeting">Welcome!</h1>
+        <p id="welcome">We are happy to have you here. Have a productive day!</p>
+        <button id="changeGreeting">Change Greeting</button><button id="toggleWelcome">Hide Welcome
+            Message</button><button id="greetingAlert">Click Greeting</button>
+    </main>
+    <script>
+        $(function(){
+
+  const hour=new Date().getHours();
+  let greeting=hour<12?"Good Morning":hour<17?"Good Afternoon":"Good Evening";
+  $("#greeting").text(greeting+", welcome to our website!");
+  const quotes=["Small steps every day lead to big results.","Believe in yourself and keep moving forward.","Your future is created by what you do today."];
+  $("#changeGreeting").on("click",function(){
+    $("#greeting").text(quotes[Math.floor(Math.random()*quotes.length)]);
+  });
+  $("#toggleWelcome").on("click",function(){
+    $("#welcome").toggle();
+    $(this).text($("#welcome").is(":visible")?"Hide Welcome Message":"Show Welcome Message");
+  });
+  $("#greetingAlert").on("click",function(){alert($("#greeting").text());});
+});
+    </script>
+</body>
+
+</html>

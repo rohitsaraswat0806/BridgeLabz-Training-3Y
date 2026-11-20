@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Team Directory</title>
+    <style>
+        body {
+            font-family: Arial;
+            padding: 25px;
+            background: #f1f5f9
+        }
+
+        .department {
+            background: white;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 9px
+        }
+
+        .employee {
+            padding: 10px;
+            margin: 6px;
+            background: #f8fafc;
+            border-radius: 6px
+        }
+
+        .manager {
+            font-weight: bold;
+            cursor: pointer
+        }
+
+        .report {
+            margin-left: 25px
+        }
+
+        .highlight {
+            background: #fde68a !important
+        }
+
+        .contact {
+            display: none;
+            color: #2563eb
+        }
+
+        button {
+            padding: 9px;
+            margin: 5px
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="05.team-members-directory.js" defer></script>
+</head>
+
+<body>
+    <main>
+        <h1>Team Members Directory</h1><button id="random">Select Random Employee</button><button id="collapse">Collapse
+            / Expand Team</button>
+        <section class="department">
+            <h2 class="deptTitle">Engineering</h2>
+            <div class="team">
+                <div class="employee manager">Aman - Engineering Manager</div>
+                <div class="employee report">Riya - Frontend Developer <span class="contact">riya@example.com</span>
+                </div>
+                <div class="employee report">Karan - Backend Developer <span class="contact">karan@example.com</span>
+                </div>
+            </div>
+        </section>
+        <section class="department">
+            <h2 class="deptTitle">Marketing</h2>
+            <div class="team">
+                <div class="employee manager">Neha - Marketing Manager</div>
+                <div class="employee report">Ishita - Content Writer <span class="contact">ishita@example.com</span>
+                </div>
+                <div class="employee report">Dev - SEO Specialist <span class="contact">dev@example.com</span></div>
+            </div>
+        </section>
+    </main>
+    <script>
+        $(function(){
+  // A manager click highlights direct reports in the same team.
+  $(".manager").on("click",function(){$(this).siblings(".report").toggleClass("highlight");});
+  // .next() gets the contact information placed immediately after the employee name.
+  $(".employee").hover(function(){$(this).children(".contact").show();},
+                       function(){$(this).children(".contact").hide();});
+  // .children() selects all direct team members within the chosen department.
+  $(".deptTitle").on("click",function(){$(this).next(".team").children(".employee").css("background","#dbeafe");});
+  $("#random").on("click",function(){
+    const employees=$(".employee.report"),chosen=employees.eq(Math.floor(Math.random()*employees.length));
+    $(".employee").removeClass("highlight");chosen.siblings(".report").addBack().addClass("highlight");
+  });
+  // .parent() and .find() are used to collapse or expand all team members.
+  $("#collapse").on("click",function(){
+    $(".team").each(function(){$(this).parent().find(".employee").toggle();});
+  });
+});
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Product Highlight</title>
+    <style>
+        body {
+            font-family: Arial;
+            padding: 25px;
+            background: #f8fafc
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+            gap: 15px
+        }
+
+        .product {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 16px;
+            cursor: pointer
+        }
+
+        .product.active {
+            background: #dbeafe;
+            border: 2px solid #2563eb
+        }
+
+        .product[data-discount="true"] {
+            border-top: 5px solid #16a34a
+        }
+
+        .details {
+            display: none;
+            color: #475569
+        }
+
+        .favorite {
+            float: right;
+            border: 0;
+            background: none;
+            font-size: 22px;
+            cursor: pointer
+        }
+
+        .selected {
+            color: #e11d48
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="02.product-highlight.js" defer></script>
+</head>
+
+<body>
+    <main>
+        <h1>Featured Products</h1>
+        <section class="products">
+            <article class="product" data-stock="in"><button class="favorite">♡</button>
+                <h2>Wireless Mouse</h2>
+                <p>₹599</p>
+                <p class="details">Ergonomic design, 2.4 GHz connection.</p>
+            </article>
+            <article class="product" data-stock="out" data-discount="true"><button class="favorite">♡</button>
+                <h2>Gaming Keyboard</h2>
+                <p>₹1,499 · Discount</p>
+                <p class="details">RGB lighting and mechanical keys.</p>
+            </article>
+            <article class="product" data-stock="in" data-discount="true"><button class="favorite">♡</button>
+                <h2>Headphones</h2>
+                <p>₹999 · Discount</p>
+                <p class="details">Comfortable over-ear headphones.</p>
+            </article>
+            <article class="product" data-stock="in"><button class="favorite">♡</button>
+                <h2>Webcam</h2>
+                <p>₹1,199</p>
+                <p class="details">Full HD video for meetings.</p>
+            </article>
+            <article class="product" data-stock="out"><button class="favorite">♡</button>
+                <h2>USB Hub</h2>
+                <p>₹449</p>
+                <p class="details">Four-port USB expansion hub.</p>
+            </article>
+        </section>
+    </main>
+    <script>
+        $(function(){
+  // Product click highlights the selected product; the favorite button is handled separately.
+  $(".product").on("click",function(e){
+    if($(e.target).closest(".favorite").length)return;
+    $(".product").removeClass("active");$(this).addClass("active");
+    if($(this).attr("data-stock")==="out")alert("Sorry, this product is currently out of stock.");
+  });
+  $(".product").hover(function(){$(this).find(".details").stop(true,true).slideDown(150);},
+                      function(){$(this).find(".details").stop(true,true).slideUp(150);});
+  $(".favorite").on("click",function(e){
+    e.stopPropagation();$(this).toggleClass("selected");
+    $(this).text($(this).hasClass("selected")?"♥":"♡");
+  });
+});
+    </script>
+</body>
+
+</html>

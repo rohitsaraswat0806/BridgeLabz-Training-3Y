@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Subscription Panel</title>
+    <style>
+        body {
+            font-family: Arial;
+            padding: 25px;
+            background: #f8fafc
+        }
+
+        .panel {
+            max-width: 650px;
+            margin: auto;
+            background: white;
+            padding: 22px;
+            border-radius: 10px
+        }
+
+        .topic {
+            padding: 10px;
+            border-bottom: 1px solid #ddd
+        }
+
+        .topic button {
+            float: right
+        }
+
+        .controls {
+            margin: 15px 0
+        }
+
+        button {
+            padding: 8px 12px;
+            cursor: pointer
+        }
+
+        #message {
+            color: #15803d;
+            font-weight: bold
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="06.event-subscription-panel.js" defer></script>
+</head>
+
+<body>
+    <main class="panel">
+        <h1>Event Subscription Panel</h1>
+        <p id="status">Notifications are disabled.</p>
+        <div class="controls"><button id="subscribe">Subscribe</button><button id="unsubscribe">Unsubscribe</button>
+        </div>
+        <label for="newTopic">New topic:</label><input id="newTopic" placeholder="Enter topic"><button id="addTopic">Add
+            Topic</button>
+        <div id="topics">
+            <div class="topic">Technology <button class="remove">Remove</button></div>
+            <div class="topic">Sports <button class="remove">Remove</button></div>
+            <div class="topic">Education <button class="remove">Remove</button></div>
+            <div class="topic">Events <button class="remove">Remove</button></div>
+            <div class="topic">Offers <button class="remove">Remove</button></div>
+        </div>
+        <p id="message" aria-live="polite"></p>
+    </main>
+   <script>
+   $(function(){
+  let notificationsEnabled=false;
+  function showMessage(text){$("#message").stop(true,true).text(text).fadeIn().delay(1800).fadeOut();}
+  $("#subscribe").on("click",function(){notificationsEnabled=true;$("#status").text("Notifications are enabled.");showMessage("Successfully subscribed!");});
+  $("#unsubscribe").on("click",function(){notificationsEnabled=false;$("#status").text("Notifications are disabled.");showMessage("You have unsubscribed.");});
+  // Delegated .on() handles remove buttons added now or later.
+  $("#topics").on("click",".remove",function(){
+    const topic=$(this).closest(".topic");
+    // Detach this topic's click handler with .off() before removing the topic.
+    topic.off("click").remove();showMessage("Subscription topic removed.");
+  });
+  $("#topics").on("click",".topic",function(){
+    $(this).toggleClass("chosen");
+  });
+  $("#addTopic").on("click",function(){
+    const name=$("#newTopic").val().trim();if(!name){alert("Enter a topic name.");return;}
+    const newTopic=$("<div>").addClass("topic").text(name+" ");
+    const removeButton=$("<button>").addClass("remove").text("Remove");
+    newTopic.append(removeButton);$("#topics").append(newTopic);$("#newTopic").val("");
+    // Delegated event handlers above automatically work for this new topic.
+    showMessage("New topic added.");
+  });
+});</script>
+</body>
+
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Multi-jQuery Widgets</title>
+    <style>
+        body {
+            font-family: Arial;
+            padding: 25px;
+            background: #f1f5f9
+        }
+
+        .widget {
+            display: inline-block;
+            padding: 18px;
+            margin: 8px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px
+        }
+
+        .active {
+            border: 3px solid #2563eb;
+            background: #dbeafe
+        }
+
+        button {
+            padding: 9px;
+            margin: 5px
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: #0009;
+            align-items: center;
+            justify-content: center
+        }
+
+        .modal-box {
+            background: white;
+            padding: 25px;
+            border-radius: 10px
+        }
+    </style>
+    <!-- Version 1 is stored as jQueryV1 using noConflict(true). -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>var jQueryV1 = jQuery.noConflict(true);</script>
+    <!-- Version 2 remains available as the global jQuery/$ variable. -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="09.multi-jquery-widgets.js" defer></script>
+</head>
+
+<body>
+    <main>
+        <h1>Dashboard Widgets</h1>
+        <section id="carousel">
+            <article class="widget" title="First widget tooltip">Widget 1: Sales</article>
+            <article class="widget" title="Second widget tooltip">Widget 2: Visitors</article>
+            <article class="widget" title="Third widget tooltip">Widget 3: Orders</article>
+        </section>
+        <button id="notify">Show Notification</button>
+        <div id="notificationModal" class="modal">
+            <div class="modal-box">
+                <h2>Notification</h2>
+                <p>Your dashboard is up to date.</p><button id="closeModal">Close</button>
+            </div>
+        </div>
+        <p id="versionInfo">Carousel: jQuery 3.6.4 | Modal and tooltips: jQuery 3.7.1</p>
+    </main>
+    <script>
+        // Version 1 controls carousel rotation and active widget highlighting.
+jQueryV1(function($v1){
+  const widgets=$v1("#carousel .widget");let activeIndex=0;
+  function activateWidget(index){widgets.removeClass("active").eq(index).addClass("active");}
+  activateWidget(activeIndex);
+  setInterval(function(){activeIndex=(activeIndex+1)%widgets.length;activateWidget(activeIndex);},3000);
+  widgets.on("click",function(){activeIndex=widgets.index(this);activateWidget(activeIndex);});
+});
+
+// Version 2 controls notification modal and hover tooltips.
+jQuery(function($v2){
+  $v2("#notify").on("click",function(){$v2("#notificationModal").fadeIn(200).css("display","flex");});
+  $v2("#closeModal,#notificationModal").on("click",function(){$v2("#notificationModal").fadeOut(200);});
+  $v2(".modal-box").on("click",function(event){event.stopPropagation();});
+  // Add a small tooltip using the title attribute on widget hover.
+  $v2(".widget").on("mouseenter",function(){
+    const message=$v2(this).attr("title");
+    $v2("<span class='tooltip'>"+message+"</span>").appendTo(this).css({display:"block",color:"#2563eb",marginTop:"8px"});
+  }).on("mouseleave",function(){$v2(this).find(".tooltip").remove();});
+});
+    </script>
+</body>
+
+</html>

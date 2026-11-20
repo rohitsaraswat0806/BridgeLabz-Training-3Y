@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Form Validation</title>
+<style>
+body{font-family:Arial;background:#f4f6f8;padding:30px}.card{max-width:450px;margin:auto;background:white;padding:25px;border-radius:12px}
+label{display:block;margin-top:13px}input{box-sizing:border-box;width:100%;padding:11px;margin-top:6px;border:1px solid #aaa;border-radius:6px}
+.error{color:#dc2626;font-size:14px;min-height:17px;margin:4px 0}button{margin-top:12px;padding:11px 18px;background:#2563eb;color:white;border:0;border-radius:6px;cursor:pointer}
+#success{color:#15803d;font-weight:bold}
+</style></head><body><main class="card"><h1>Sign Up Form</h1>
+<form id="signupForm" novalidate>
+<label for="name">Name</label><input id="name" type="text"><p class="error" id="nameError"></p>
+<label for="email">Email</label><input id="email" type="text"><p class="error" id="emailError"></p>
+<label for="password">Password</label><input id="password" type="password"><p class="error" id="passwordError"></p>
+<button type="submit">Submit</button>
+</form><p id="success" role="status"></p></main>
+<script>
+const signupForm=document.getElementById('signupForm');
+const fields={
+ name:document.getElementById('name'),
+ email:document.getElementById('email'),
+ password:document.getElementById('password')
+};
+function validateField(fieldName){
+ const value=fields[fieldName].value.trim();let error='';
+ if(fieldName==='name'&&!value)error='Name is required.';
+ if(fieldName==='email'&&(!value||!value.includes('@')))error='Enter an email containing @.';
+ if(fieldName==='password'&&value.length<6)error='Password must be at least 6 characters.';
+ document.getElementById(fieldName+'Error').textContent=error;
+ return error==='';
+}
+// Revalidate a field as soon as the user corrects its value.
+Object.keys(fields).forEach(fieldName=>fields[fieldName].addEventListener('input',()=>{
+ validateField(fieldName);document.getElementById('success').textContent='';
+}));
+signupForm.addEventListener('submit',event=>{
+ event.preventDefault(); // Stop the browser's normal form submission.
+ const isValid=Object.keys(fields).map(validateField).every(Boolean);
+ if(isValid){document.getElementById('success').textContent='Form Submitted Successfully';signupForm.reset();}
+});
+</script></body></html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Dynamic Blog Posts</title>
+    <style>
+        body {
+            font-family: Arial;
+            padding: 25px;
+            background: #f8fafc
+        }
+
+        .post {
+            background: white;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 12px 0;
+            border-radius: 8px
+        }
+
+        .featured {
+            background: #fef3c7;
+            border: 2px solid #d97706
+        }
+
+        .tag {
+            display: inline-block;
+            background: #dbeafe;
+            padding: 4px 8px;
+            margin: 5px;
+            border-radius: 5px
+        }
+
+        .controls button {
+            padding: 9px;
+            margin: 4px
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="08.dynamic-blog-posts.js" defer></script>
+</head>
+
+<body>
+    <main>
+        <h1>Blog Admin Panel</h1>
+        <div class="controls"><button id="add">Add New Post</button><button id="featured">Prepend Featured
+                Post</button><button id="remove">Remove Last Post</button><button id="tag">Add Tag to First
+                Post</button><button id="highlight">Highlight JavaScript Posts</button></div>
+        <section id="posts">
+            <article class="post">
+                <h2>Learning HTML</h2>
+                <p>HTML gives structure to web pages.</p>
+            </article>
+            <article class="post">
+                <h2>CSS Design Tips</h2>
+                <p>CSS makes websites attractive and responsive.</p>
+            </article>
+            <article class="post">
+                <h2>JavaScript Basics</h2>
+                <p>JavaScript adds interactivity to websites.</p>
+            </article>
+            <article class="post">
+                <h2>jQuery Introduction</h2>
+                <p>jQuery simplifies JavaScript tasks.</p>
+            </article>
+            <article class="post">
+                <h2>Advanced JavaScript</h2>
+                <p>Practice JavaScript to improve your skills.</p>
+            </article>
+        </section>
+    </main>
+    <script>
+    $(function(){
+  let postNumber=5;
+  $("#add").on("click",function(){
+    postNumber++;$("#posts").append(`<article class="post"><h2>New Blog Post ${postNumber}</h2><p>This post was added dynamically.</p></article>`);
+  });
+  $("#featured").on("click",function(){
+    $("#posts").prepend("<article class='post featured'><h2>Featured: Welcome to Our Blog</h2><p>Read our latest featured story.</p></article>");
+  });
+  $("#remove").on("click",function(){$("#posts .post").last().remove();});
+  $("#tag").on("click",function(){
+    const firstPost=$("#posts .post").first();
+    // .before() and .after() place tags around the selected post.
+    firstPost.before("<span class='tag'>NEW</span>");
+    firstPost.after("<span class='tag'>EDITOR'S PICK</span>");
+  });
+  $("#highlight").on("click",function(){
+    $("#posts .post").each(function(){
+      if($(this).text().toLowerCase().includes("javascript"))$(this).css("background","#dcfce7");
+    });
+  });
+});</script>
+</body>
+
+</html>
