@@ -1,24 +1,87 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Custom Dropdown</title>
-<style>
-body{font-family:Arial;padding:35px;background:#f4f6f8}.dropdown{position:relative;width:240px}.dropdown-toggle{width:100%;padding:12px;text-align:left;background:#2563eb;color:white;border:0;border-radius:7px;cursor:pointer}
-.options{display:none;position:absolute;top:48px;left:0;right:0;background:white;box-shadow:0 4px 12px #0002;border-radius:7px;overflow:hidden;z-index:2}
-.options.open{display:block}.option{padding:12px;cursor:pointer}.option:hover{background:#dbeafe}
-</style></head><body><h1>Custom Dropdown</h1><div class="dropdown" id="dropdown">
-<button class="dropdown-toggle" id="toggleButton">Choose a subject ▼</button>
-<div class="options" id="options"><div class="option">HTML</div><div class="option">CSS</div><div class="option">JavaScript</div><div class="option">Python</div></div>
-</div><p id="selection">No subject selected.</p>
-<script>
-const dropdown=document.getElementById('dropdown'),toggleButton=document.getElementById('toggleButton'),options=document.getElementById('options');
-toggleButton.addEventListener('click',()=>options.classList.toggle('open'));
-options.addEventListener('click',event=>{
- if(!event.target.classList.contains('option'))return;
- toggleButton.textContent=event.target.textContent+' ▼';
- document.getElementById('selection').textContent='Selected subject: '+event.target.textContent;
- options.classList.remove('open');
-});
-// Capturing phase: document sees the click before the dropdown's bubbling handlers.
-document.addEventListener('click',event=>{
- if(!dropdown.contains(event.target))options.classList.remove('open');
-},true);
-</script></body></html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Dropdown</title>
+    <style>
+        body {
+            font-family: Arial;
+            padding: 35px;
+            background: #f4f6f8
+        }
+
+        .dropdown {
+            position: relative;
+            width: 240px
+        }
+
+        .dropdown-toggle {
+            width: 100%;
+            padding: 12px;
+            text-align: left;
+            background: #2563eb;
+            color: white;
+            border: 0;
+            border-radius: 7px;
+            cursor: pointer
+        }
+
+        .options {
+            display: none;
+            position: absolute;
+            top: 48px;
+            left: 0;
+            right: 0;
+            background: white;
+            box-shadow: 0 4px 12px #0002;
+            border-radius: 7px;
+            overflow: hidden;
+            z-index: 2
+        }
+
+        .options.open {
+            display: block
+        }
+
+        .option {
+            padding: 12px;
+            cursor: pointer
+        }
+
+        .option:hover {
+            background: #dbeafe
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Custom Dropdown</h1>
+    <div class="dropdown" id="dropdown">
+        <button class="dropdown-toggle" id="toggleButton">Choose a subject ▼</button>
+        <div class="options" id="options">
+            <div class="option">HTML</div>
+            <div class="option">CSS</div>
+            <div class="option">JavaScript</div>
+            <div class="option">Python</div>
+        </div>
+    </div>
+    <p id="selection">No subject selected.</p>
+    <script>
+        const dropdown = document.getElementById('dropdown'), toggleButton = document.getElementById('toggleButton'), options = document.getElementById('options');
+        toggleButton.addEventListener('click', () => options.classList.toggle('open'));
+        options.addEventListener('click', event => {
+            if (!event.target.classList.contains('option')) return;
+            toggleButton.textContent = event.target.textContent + ' ▼';
+            document.getElementById('selection').textContent = 'Selected subject: ' + event.target.textContent;
+            options.classList.remove('open');
+        });
+        // Capturing phase: document sees the click before the dropdown's bubbling handlers.
+        document.addEventListener('click', event => {
+            if (!dropdown.contains(event.target)) options.classList.remove('open');
+        }, true);
+    </script>
+</body>
+
+</html>
