@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Timetable Viewer</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 30px; background: #f4f6f8; }
+        .container { max-width: 750px; margin: auto; background: white; padding: 24px; border-radius: 10px; }
+        select { padding: 10px; margin: 10px 0 18px; }
+        .class-row { padding: 14px; border-bottom: 1px solid #ddd; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>College Timetable</h2>
+        <label for="day">Select day:</label>
+        <select id="day">
+            <option>Monday</option><option>Tuesday</option><option>Wednesday</option>
+            <option>Thursday</option><option>Friday</option><option>Saturday</option><option>Sunday</option>
+        </select>
+        <div id="timetable">Loading timetable...</div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

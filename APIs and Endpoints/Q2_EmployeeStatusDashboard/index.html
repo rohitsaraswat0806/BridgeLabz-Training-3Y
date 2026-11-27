@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Status Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 30px; background: #f4f6f8; }
+        .container { max-width: 650px; margin: auto; background: white; padding: 24px; border-radius: 10px; }
+        .employee { display: flex; justify-content: space-between; align-items: center; padding: 14px; border-bottom: 1px solid #ddd; }
+        button { padding: 8px 14px; cursor: pointer; }
+        .active { color: green; } .inactive { color: #b45309; }
+        #message { color: #b91c1c; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Employee Status Dashboard</h2>
+        <p id="message"></p>
+        <div id="employeeList">Loading employees...</div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

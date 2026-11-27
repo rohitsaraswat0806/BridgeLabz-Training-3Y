@@ -1,0 +1,78 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "name": "Aman"
+        },
+        {
+            "id": 2,
+            "name": "Riya"
+        },
+        {
+            "id": 3,
+            "name": "Karan"
+        },
+        {
+            "id": 4,
+            "name": "Neha"
+        },
+        {
+            "id": 5,
+            "name": "Rahul"
+        }
+    ],
+    "orders": [
+        {
+            "id": 1,
+            "userId": 1,
+            "total": 1200
+        },
+        {
+            "id": 2,
+            "userId": 2,
+            "total": 800
+        },
+        {
+            "id": 3,
+            "userId": 3,
+            "total": 2500
+        },
+        {
+            "id": 4,
+            "userId": 4,
+            "total": 400
+        },
+        {
+            "id": 5,
+            "userId": 5,
+            "total": 1800
+        }
+    ],
+    "products": [
+        {
+            "id": 1,
+            "name": "Laptop",
+            "price": 55000
+        },
+        {
+            "id": 2,
+            "name": "Mouse",
+            "price": 650
+        },
+        {
+            "id": 3,
+            "name": "Keyboard",
+            "price": 1200
+        },
+        {
+            "id": 4,
+            "name": "Monitor",
+            "price": 9000
+        },
+        {
+            "id": 5,
+            "name": "Headphones",
+            "price": 1800
+        }
+    ]
+}

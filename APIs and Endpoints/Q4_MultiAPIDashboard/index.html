@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-API Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 30px; background: #f4f6f8; }
+        .container { max-width: 750px; margin: auto; background: white; padding: 24px; border-radius: 10px; }
+        .cards { display: flex; flex-wrap: wrap; gap: 16px; }
+        .card { flex: 1; min-width: 150px; padding: 24px; background: #e8efff; border-radius: 8px; }
+        .number { font-size: 30px; font-weight: bold; }
+        .skeleton { color: #888; }
+        #warning { color: #b45309; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Dashboard Summary</h2>
+        <p id="warning"></p>
+        <div class="cards">
+            <div class="card"><p>Total Users</p><div id="users" class="number skeleton">...</div></div>
+            <div class="card"><p>Total Orders</p><div id="orders" class="number skeleton">...</div></div>
+            <div class="card"><p>Total Products</p><div id="products" class="number skeleton">...</div></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
